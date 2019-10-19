@@ -1,0 +1,33 @@
+<style>
+    .panel {
+        z-index: 902 !important;
+    }
+    .window-shadow {
+        z-index: 901 !important;
+    }
+    .window-mask {
+        z-index: 900 !important;
+    }
+</style>
+<script type="text/javascript">
+    $(function(){
+
+        $.post(ThinkPHP['MODULE']+'/underway/get_3Ddata',{kid:pro_info.kid}, function (data) {
+
+            var ddata = JSON.parse(data);
+            var dicon = "";
+            if(ddata!=''){
+
+                dicon = '<img src='+ddata[0].files_add+'>';
+                 $('#3dpic').html(dicon);
+            }
+            else{
+                $.messager.alert('提示', '没有现场审计图片数据！');
+                return;
+            }
+        });
+
+    });
+
+</script>
+<div id="3dpic"></div>

@@ -877,4 +877,30 @@ class Index extends Controller
         $json = '{"total":'.$count.',"rows":'.json_encode($map).'}';
         echo $json;
     }
+
+//    进行审计跟踪项目=》点击进入=》显示单项工程数据
+    public function show_singleproject(){
+        $get_search = Request::post();
+        $search = [];
+        if(isset($get_search) && !empty($get_search)){
+            $search[] = ['single_project','like','%'.$get_search['pro'].'%'];
+        }
+        $get_pro = Request::get('project_kid');
+        $search_name['kid'] = $get_pro;
+
+        $count = Db::name('singleproject')
+            ->where('kid',$get_pro)
+            ->where($search)
+            ->count();
+        $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+        $pageSize = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
+
+        $map = Db::name('singleproject')->page($page,$pageSize)
+            ->where('kid',$get_pro)
+            ->where($search)
+            ->order('id asc')
+            ->select();
+        $json = '{"total":'.$count.',"rows":'.json_encode($map).'}';
+        echo $json;
+    }
 }

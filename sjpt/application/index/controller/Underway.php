@@ -26,24 +26,21 @@ class Underway extends Authc
     {
         $data = Request::post('kid');
         $where = array('kid' => $data);
-        $user_zjdz = Db::name('zjdz');//连接资金到账表
-        $count_zjje = $user_zjdz->where($where)->sum('zjje');
-        $user_htzf = Db::name('htzf');
-        $count_htzf = $user_htzf->where($where)->sum('fkje');
-        $user_glf = Db::name('zjglf');
-        $count_gz = $user_glf->where($where)->sum('gz');
-        $count_bgf = $user_glf->where($where)->sum('bgf');
-        $count_bgcd = $user_glf->where($where)->sum('bgcd');
-        $count_cljtf = $user_glf->where($where)->sum('cljtf');
-        $count_ldbhf = $user_glf->where($where)->sum('ldbhf');
-        $count_gjyjsyf = $user_glf->where($where)->sum('gjyjsyf');
-        $count_gdzcsyf = $user_glf->where($where)->sum('gdzcsyf');
-        $count_zmscgrf = $user_glf->where($where)->sum('zmscgrf');
-        $count_jstszlf = $user_glf->where($where)->sum('jstszlf');
-        $count_zdf = $user_glf->where($where)->sum('zdf');
-        $count_sgbt = $user_glf->where($where)->sum('sgbt');
-        $count_jgysf = $user_glf->where($where)->sum('jgysf');
-        $count_qtfy = $user_glf->where($where)->sum('qtfy');
+        $count_zjje = Db::name('zjdz')->where($where)->sum('zjje');
+        $count_htzf = Db::name('htzf')->where($where)->sum('fkje');
+        $count_gz = Db::name('zjglf')->where($where)->sum('gz');
+        $count_bgf = Db::name('zjglf')->where($where)->sum('bgf');
+        $count_bgcd = Db::name('zjglf')->where($where)->sum('bgcd');
+        $count_cljtf = Db::name('zjglf')->where($where)->sum('cljtf');
+        $count_ldbhf = Db::name('zjglf')->where($where)->sum('ldbhf');
+        $count_gjyjsyf = Db::name('zjglf')->where($where)->sum('gjyjsyf');
+        $count_gdzcsyf = Db::name('zjglf')->where($where)->sum('gdzcsyf');
+        $count_zmscgrf = Db::name('zjglf')->where($where)->sum('zmscgrf');
+        $count_jstszlf = Db::name('zjglf')->where($where)->sum('jstszlf');
+        $count_zdf = Db::name('zjglf')->where($where)->sum('zdf');
+        $count_sgbt = Db::name('zjglf')->where($where)->sum('sgbt');
+        $count_jgysf = Db::name('zjglf')->where($where)->sum('jgysf');
+        $count_qtfy = Db::name('zjglf')->where($where)->sum('qtfy');
         $zf_sum = round(floatval($count_htzf) + floatval($count_gz) + floatval($count_bgf) + floatval($count_bgcd) + floatval($count_cljtf)
             + floatval($count_ldbhf) + floatval($count_gjyjsyf) + floatval($count_gdzcsyf) + floatval($count_zmscgrf) + floatval($count_jstszlf)
             + floatval($count_zdf) + floatval($count_sgbt) + floatval($count_jgysf) + floatval($count_qtfy), 2);
@@ -99,7 +96,6 @@ class Underway extends Authc
     //项目综合信息，获取3D模型图片（已完成）
     public function get_3Ddata()
     {
-//        $data = I('post.kid');
         $data = Request::post('kid');
         $where = array(
             'pro_kid' => $data,
@@ -184,7 +180,20 @@ class Underway extends Authc
 
 //    进行审计跟踪项目=》点击进入=》项目详情页面
     public function show_zhxx(){
-       echo $this->view->fetch('xmgl/zhxx');
+       echo $this->view->fetch('index/xmgl/zhxx');
+    }
+
+//    进行审计跟踪项目。。。=》项目详情，显示图片（现场审计图片）页面
+    public function show_pic()
+    {
+        echo $this->view->fetch('index/xmgl/dispicture');
+    }
+
+
+//    进行审计跟踪项目。。。=》项目详情，显示效果图
+    public function show_3D()
+    {
+       echo  $this->view->fetch('index/xmgl/dis3D');
     }
 
 }
