@@ -1,0 +1,259 @@
+<!-- 添加审计实施 -->
+<script type="text/javascript" src="__STATICINDEX__/js/Print/jquery.PrintArea.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/audit/auditImplementwatch.js"></script>
+
+<!--<div id="auditImplement" class="easyui-tabs" data-options="fit:true">-->
+<div id="sjss_read" class="easyui-tabs" data-options="fit:true">
+    <!-- S 基本信息 -->
+    <div id="essential" title="基本信息">
+        <form id="essentialFormW" class="padding">
+            <!-- S 进度条 -->
+            <div id="examineStage">
+                <table>
+                    <tr>
+                        <td><div id="prepare" class="divUnderway bolder center">审计准备状态</div></td>
+                        <td><div id="tailAfter" class="divNoUnderway bolder center">审计跟踪状态</div></td>
+                        <td><div id="closeAnAccount" class="divNoUnderway bolder center">结算审计状态</div></td>
+                        <td><div id="actualBudgetStatus" class="divNoUnderway bolder center">决算审计状态</div></td>
+                        <td><div id="finish" class="divNoUnderway bolder center">审计结束状态</div></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- E 进度条 -->
+            <table class="table tabs">
+                <tr>
+                    <td class="bolder right width180"><span class="spanRed"> * </span>项目名称：</td>
+                    <td class="borderLeft" colspan="5">
+                        <input id="itemsNameW" name="project_name" class="inputHide width360" type="text" readonly/>
+                        <!--<a id="upReportDataW" class="easyui-linkbutton" iconCls="icon-mini-add">上报数据情况</a>-->
+                        <a id="itemDetailsW" class="easyui-linkbutton" iconCls="icon-mini-add">项目信息详情</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right"><span class="spanRed"> * </span>项目编号：</td>
+                    <td class="borderLeft"><input id="itemsNumberW" name="sjj_num" class="inputHide" type="text" readonly/></td>
+                    <td class="bolder right"><span class="spanRed"> * </span>建设单位：</td>
+                    <td class="borderLeft" colspan="3"><input id="constructionUnitW" name="dw_name" class="inputHide" type="text" readonly/></td>
+                </tr>
+                <tr>
+                    <td class="bolder right"><span class="spanRed"> * </span>项目性质：</td>
+                    <td class="borderLeft"><input id="itemsNatureW" name="category" class="inputHide" type="text" readonly/></td>
+                    <td class="bolder right"><span class="spanRed"> * </span>项目投资额：</td>
+                    <td class="borderLeft"><input id="itemsInvestW" name="investment" class="inputHide width120" type="text" readonly/> 万元</td>
+                    <td class="bolder right"><span class="spanRed"> * </span>项目联系人：</td>
+                    <td class="borderLeft"><input id="itemsContactsW" name="dw_fullname" class="inputHide width80" type="text" readonly/></td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计范围：</td>
+                    <td class="borderLeft" colspan="5">
+                        <input id="removeW" name="pro_sjfw0" value="1" type="checkbox" /> 征地拆迁
+                        <input id="pactAuditW" name="pro_sjfw1" value="1" type="checkbox" /> 合同审计
+                        <input id="scheduleW" name="pro_sjfw2" value="1" type="checkbox" /> 工程进度
+                        <input id="settleAccountsW" name="pro_sjfw3" value="1" type="checkbox" /> 结算审计
+                        <input id="systemW" name="pro_sjfw4" value="1" type="checkbox" /> 人员制度
+                        <input id="capitalW" name="pro_sjfw5" value="1" type="checkbox" /> 资金审计
+                        <input id="invitationForBidsW" name="pro_sjfw6" value="1" type="checkbox" /> 招标审计
+                        <input id="scheduleAlterW" name="pro_sjfw7" value="1" type="checkbox" /> 工程变更
+                        <input id="actualBudgetW" name="pro_sjfw8" value="1" type="checkbox" /> 决算审计
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计方案：</td>
+                    <td class="borderLeft" colspan="5">
+                        <div class="height100" id="uploadDiv">
+                            <span id="uploadFiles"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计组长：</td>
+                    <td class="borderLeft"><input id="auditLeaderW" name="aduit_leader" class="inputHide width80" type="text" readonly/></td>
+                    <td class="bolder right">审计开始时间：</td>
+                    <td class="borderLeft" colspan="3"><input id="auditBeginTimeW" name="pro_sjbegin" class="inputHide" type="text" readonly/></td>
+                </tr>
+                <tr>
+                    <td class="bolder right">备注：</td>
+                    <td class="borderLeft" colspan="5"><input id="remarkW" name="pro_bz" class="inputHide" data-options="multiline:true,width:980" readonly/></td>
+                </tr>
+                <tr>
+                    <td class="bolder right">远程监控视频IP地址：</td>
+                    <td class="borderLeft" colspan="5">
+                        <input id="IPSiteW" name="video_ip" class="inputHide width180" type="text" readonly/>
+                        用户名：<input id="nameW" name="video_user" class="inputHide width120" type="text" readonly/>
+                        密码：<input id="passwordW" name="video_pass" class="inputHide width120" type="text" readonly/>
+                        监控路数：<input id="monitoringW" name="video_num" class="inputHide width80" type="text" readonly/>
+                        <span class="spanRed"> * </span>
+                        <span class="spanGray">地址填写格式：http://124.166.288.99</span>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="center">
+            <a id="essentialCloseW" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel"> 关 闭 </a>
+        </div>
+    </div>
+    <!-- E 基本信息 -->
+    <!-- S 单项工程 -->
+    <div id="singleProject" class="padding" title="单项工程">
+        <div id="singleTitleW">
+            <form id="singleFormW">
+                <label>&nbsp;&nbsp;单项工程名称</label>
+                <input id="singleInputW" name="singleInputW" class="easyui-textbox" style="width: 200px"/>
+                <a id="singleQueryW" class="easyui-linkbutton" iconCls="icon-search"  onclick="inspect_objwatch.search_singleProject()"> 查 询 </a>
+
+            </form>
+        </div>
+        <div id="singlesW"></div>
+    </div>
+    <!-- E 单项工程 -->
+
+    <div id="xmzbR" class="padding" title="项目坐标">
+        <div id="xmzblistR"></div>
+        <!-- S 双击/添加单项工程页面 -->
+        <div id="dxmzbR"></div>
+        <!-- E 双击/添加单项工程页面 -->
+    </div>
+    <!-- S 平台核查事项 -->
+    <div id="platform" class="padding" title="平台核查事项">
+        <div id="platformTitleW">
+            <form id="platformFormW">
+                <label>&nbsp;&nbsp;核查名称/接收人：</label>
+                <input id="platformInputW" name="platformInputW" class="easyui-textbox" style="width: 200px"/>
+                下达时间：<input id="platformStartW" name="platformStartW" class="easyui-datebox" style="width: 200px"/>
+                - <input id="platformEndW" name="platformEndW" class="easyui-datebox" style="width: 200px"/>
+                <input id="platformYFinishW" name="platFinishW" value="0" type="checkbox"/> 未完成
+                <input id="platformNFinishW" name="platFinishW" value="1" type="checkbox"/> 已完成
+                <a id="platformQueryW" class="easyui-linkbutton" iconCls="icon-search" onclick="inspect_objwatch.search_loacal()"> 查 询 </a>
+            </form>
+        </div>
+        <div id="platformsW"></div>
+        <!-- S 平台核查双击页面 -->
+        <div id="alterPlatformWatch" class="easyui-dialog padding" data-options="width:1180,height:580,closed:true"></div>
+        <!-- E 平台核查双击页面 -->
+    </div>
+    <!-- E 平台核查事项 -->
+
+    <!-- S 现场取证事项 -->
+    <div id="locale" class="padding" title="现场取证事项">
+        <div id="localeTitleW">
+            <form id="localeFormW">
+                <label>&nbsp;&nbsp;编号：</label>
+                <input id="localeInputW" name="localeInputW" class="easyui-textbox" style="width: 200px"/>
+                到达现场时间：
+                <input id="localeStartW" name="localeStartW" class="easyui-datebox" style="width: 200px"/>
+                - <input id="localeEndW" name="localeEndW" class="easyui-datebox" style="width: 200px"/>
+                <a id="localeQueryW" class="easyui-linkbutton" iconCls="icon-search" onclick="inspect_objwatch.search_loacal()"> 查 询 </a>
+            </form>
+        </div>
+        <div id="localesW"></div>
+        <!-- S 现场取证添加/双击页面 -->
+        <div id="localeWatch" class="easyui-dialog" data-options="width:1180,height:500,closed:true"></div>
+        <!-- E 现场取证添加/双击页面 -->
+    </div>
+    <!-- E 现场取证事项 -->
+    <!-- S 审计组结论 -->
+    <div id="conclusion" class="padding" title="审计组结论">
+        <div id="conclusionTitleW">
+            <form id="conclusionFormW">
+                <label>&nbsp;&nbsp;核查编号：</label>
+                <input id="conclusionInputW" name="conclusionInputW" class="easyui-textbox" style="width: 200px"/>
+                <label>&nbsp;&nbsp;添加日期：</label>
+                <input id="conclusionStartW" name="conclusionStartW" class="easyui-datebox" style="width: 200px"/>
+                - <input id="conclusionEndW" name="conclusionEndW" class="easyui-datebox" style="width: 200px"/>
+
+                <a id="conclusionQueryW" class="easyui-linkbutton" iconCls="icon-search" onclick="inspect_objwatch.search_conclusion()"> 查 询 </a>
+            </form>
+        </div>
+        <div id="conclusionsW"></div>
+        <!-- S 审计组结论添加/双击页面 -->
+        <div id="conclusionWatch" class="easyui-dialog" data-options="width:1180,height:560,closed:true"></div>
+        <!-- E 审计组结论添加/双击页面 -->
+    </div>
+    <!-- E 审计组结论 -->
+    <!-- S 审计复核 -->
+    <div id="review" class="padding" title="审计复核">
+        <div id="reviewTitleW">
+            <form id="reviewFormW">
+                <label>&nbsp;&nbsp;提请时间：</label>
+                <input id="reviewStartW" name="reviewStartW" class="easyui-datebox" style="width: 200px"/>
+                - <input id="reviewEndW" name="reviewEndW" class="easyui-datebox" style="width: 200px"/>
+                <input id="reviewYFinishW" name="reviewfinishW" value="0" type="checkbox" /> 未完成
+                <input id="reviewNFinishW" name="reviewfinishW" value="1" type="checkbox" /> 已完成
+                <a id="reviewQueryW" class="easyui-linkbutton" iconCls="icon-search" onclick="inspect_objwatch.search_review()"> 查 询 </a>
+            </form>
+        </div>
+        <div id="reviewsW"></div>
+        <!-- S 审计组结论添加/双击页面 -->
+        <div id="reviewWatch" class="easyui-dialog" data-options="width:1180,height:480,closed:true"></div>
+        <!-- E 审计组结论添加/双击页面 -->
+    </div>
+    <!-- E 审计复核 -->
+    <!-- S 审计正式文书 -->
+    <div id="writ" class="padding" title="审计正式文书">
+        <div id="writTitleW">
+            <form id="writFormW">
+                <label>&nbsp;&nbsp;文书编号：</label>
+                <input id="writNumW" name="writNumW" class="easyui-textbox" style="width: 200px"/>
+
+                <input id="writYFinishW" name="writYFinishW" value="0" type="checkbox" /> 未发送
+                <input id="writNFinishW" name="writYFinishW" value="1" type="checkbox" /> 已发送
+                <a id="writQueryW" class="easyui-linkbutton" iconCls="icon-search" onclick="inspect_objwatch.search_writ()"> 查 询 </a>
+            </form>
+        </div>
+        <div id="writsW"></div>
+        <!-- S 审计正式文书添加/双击页面 -->
+        <div id="writWatch" class="easyui-dialog" data-options="width:1000,height:430,closed:true"></div>
+        <!-- E 审计正式文书添加/双击页面 -->
+    </div>
+    <!-- E 审计正式文书 -->
+    <!-- S 项目整改情况 -->
+    <div class="padding" title="项目整改情况">
+
+        <div id="abArbEitUngSW"></div>
+        <!-- S 双击查看项目整改情况页面 -->
+        <div id="abaRbeItUngWatch" data-options="width:1180,height:385,closed:true"></div>
+        <!-- E 双击查看项目整改情况页面 -->
+
+    </div>
+    <!--<div id="" class="padding" title="审计方法">-->
+        <!--<div id="sjfflist" class="easyui-tabs" data-options="fit:true">-->
+            <!--<div title="多报人口" style="padding:10px">-->
+                <!--<div id="rklist"></div>-->
+            <!--</div>-->
+            <!--<div title="多奖励">-->
+                <!--<div title="多奖励" style="padding:10px">-->
+                    <!--<div id="jllist"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div title="超面积">-->
+                <!--<div title="超面积" style="padding:10px">-->
+                    <!--<div id="cmjlist"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!-- E 项目整改情况 -->
+    <!-- S 审计方法 -->
+    <!--<div class="padding" title="审计方法">-->
+        <!--<div class="center paddingButton">-->
+            <!--<a id="courseW" class="easyui-linkbutton buttonBottom" iconCls="icon-mini-add"> 审批过程审计 </a>-->
+            <!--<a id="estimateW" class="easyui-linkbutton buttonBottom" iconCls="icon-mini-add"> 资金概算审计 </a>-->
+            <!--<a id="manageW" class="easyui-linkbutton buttonBottom" iconCls="icon-mini-add"> 资金管理审计 </a>-->
+            <!--<a id="callForBidsW" class="easyui-linkbutton buttonBottom" iconCls="icon-mini-add"> 招标审计 </a>-->
+            <!--<a id="contractW" class="easyui-linkbutton buttonBottom" iconCls="icon-mini-add"> 合同审计 </a>-->
+            <!--<div id="containerW"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!-- E 审计方法 -->
+</div>
+
+<!-- S 上报数据情况弹出页面 -->
+<div id="auditDataW">
+    <!--<iframe id="frameMain" class="frame" src="../project/jobSchedule.html" width="100%" height="99.6%" frameborder="0" name="content"></iframe>-->
+</div>
+<!-- E 上报数据情况弹出页面 -->
+
+<!-- S 项目详情弹出页面 -->
+<div id="auditItemW"></div>

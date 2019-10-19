@@ -1,0 +1,79 @@
+<style>
+    body {
+        margin: 0;
+        text-align: center;
+    }
+
+    #myPlayer {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    #myPlayer1 {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .div-a {
+        float: left;
+        width: 49%;
+        border: 3px solid #F5F5F5
+    }
+
+    .div-b {
+        float: left;
+        width: 49%;
+        border: 3px solid #F5F5F5
+    }
+
+    .all {
+        padding-top: 0.5%;
+        height: 45%;
+        margin-left: 5px;
+    }
+</style>
+<script type="text/javascript" src="__STATICINDEX__/js/xmgl/ezuikit.js"></script>
+
+
+<div class="div-a">
+    <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/7efa47dc565f46eb96570fa1fcf7438b.hd" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/7efa47dc565f46eb96570fa1fcf7438b.hd.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+<div class="div-b">
+    <video id="myPlayer1" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/ada084f5545d4f188fd2b54307fa5ad9.hd" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/ada084f5545d4f188fd2b54307fa5ad9.hd.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+
+
+<script>
+    var player = new EZUIPlayer('myPlayer');
+    player.on('error', function () {
+        console.log('error');
+    });
+    player.on('play', function () {
+        console.log('play');
+    });
+    player.on('pause', function () {
+        console.log('pause');
+    });
+
+    var player1 = new EZUIPlayer('myPlayer1');
+    player1.on('error', function () {
+        console.log('error');
+    });
+    player1.on('play', function () {
+        console.log('play');
+    });
+    player1.on('pause', function () {
+        console.log('pause');
+    });
+
+
+</script>
+

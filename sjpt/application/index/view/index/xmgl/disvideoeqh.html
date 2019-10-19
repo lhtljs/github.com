@@ -1,0 +1,127 @@
+<style>
+    body {
+        margin: 0;
+        text-align: center;
+    }
+
+    #myPlayer {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    #myPlayer1 {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    #myPlayer2 {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    #myPlayer3 {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .div-a {
+        float: left;
+        width: 49%;
+        height: 49%;
+        border: 3px solid #F5F5F5
+    }
+
+    .div-b {
+        float: left;
+        width: 49%;
+        height: 49%;
+        border: 3px solid #F5F5F5
+    }
+
+    .all {
+        padding-top: 0.5%;
+        height: 45%;
+        margin-left: 5px;
+    }
+
+
+</style>
+<script type="text/javascript" src="__STATICINDEX__/js/xmgl/ezuikit.js"></script>
+
+
+<div class="div-a">
+    <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/92c979bc4e2a4a40af226f905c23160d" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/92c979bc4e2a4a40af226f905c23160d.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+<div class="div-b">
+    <video id="myPlayer1" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/fb295a2807b24c1bb5764f355bad69eb" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/fb295a2807b24c1bb5764f355bad69eb.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+<div class="div-a">
+    <video id="myPlayer2" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/ada784553b8f42b4a68233bfe8c2d85a" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/ada784553b8f42b4a68233bfe8c2d85a.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+<div class="div-b">
+    <video id="myPlayer3" poster="" controls playsInline webkit-playsinline autoplay>
+        <source src="rtmp://rtmp.open.ys7.com/openlive/2547133af48343fb8bd6bc71b472110d" type=""/>
+        <source src="http://hls.open.ys7.com/openlive/2547133af48343fb8bd6bc71b472110d.m3u8"
+                type="application/x-mpegURL"/>
+    </video>
+</div>
+
+
+<script>
+    var player = new EZUIPlayer('myPlayer');
+    player.on('error', function () {
+        console.log('error');
+    });
+    player.on('play', function () {
+        console.log('play');
+    });
+    player.on('pause', function () {
+        console.log('pause');
+    });
+
+    var player1 = new EZUIPlayer('myPlayer1');
+    player1.on('error', function () {
+        console.log('error');
+    });
+    player1.on('play', function () {
+        console.log('play');
+    });
+    player1.on('pause', function () {
+        console.log('pause');
+    });
+
+    var player2 = new EZUIPlayer('myPlayer2');
+    player2.on('error', function () {
+        console.log('error');
+    });
+    player2.on('play', function () {
+        console.log('play');
+    });
+    player2.on('pause', function () {
+        console.log('pause');
+    });
+
+    var player3 = new EZUIPlayer('myPlayer3');
+    player3.on('error', function () {
+        console.log('error');
+    });
+    player3.on('play', function () {
+        console.log('play');
+    });
+    player3.on('pause', function () {
+        console.log('pause');
+    });
+</script>
+

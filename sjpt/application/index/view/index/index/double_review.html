@@ -1,0 +1,91 @@
+<script type="text/javascript" src="__STATICINDEX__/js/home/double_review.js"></script>
+<link rel="stylesheet" href="__STATICINDEX__/css/synthesisTable.css"/>
+<div id="review" class="easyui-tabs" data-options="fit:true">
+    <div id="recheck" class="padding" title="复核信息">
+        <form id="recheckForm4">
+            <table class="table">
+                <tr>
+                    <td class="bolder right width150">项目名称：</td>
+                    <td class="borderLeft" colspan="3">
+                        <input id="itemName" name="project_name" class="inputHide width98" type="text" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计组长：</td>
+                    <td class="borderLeft">
+                        <input id="groupLeader" name="group_leader" class="inputHide width98" type="text" readonly/>
+                    </td>
+                    <td class="bolder right">提请时间：</td>
+                    <td class="borderLeft">
+                        <input id="liftInviteTime" name="createtime" class="inputHide width98" type="text" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">复核标题：</td>
+                    <td class="borderLeft" colspan="3">
+                        <input id="recheckTitle" name="reviews" class="inputHide " type="text" style="width: 760px"
+                               readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计结论编号：</td>
+                    <td class="borderLeft">
+                        <input id="recheckNumber" name="conclusion_num" class="inputHide" readonly/>
+                    </td>
+                    <td class="bolder right">核查编号：</td>
+                    <td class="borderLeft">
+                        <input id="inspectNumber" name="inspect_num" class="inputHide " type="text" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计发现问题：</td>
+                    <td class="borderLeft" colspan="3">
+                        <input id="auditIssue" name="problem" class="inputHide width98 height90" type="text" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计文书：</td>
+                    <td class="borderLeft" colspan="3">
+                        <!--<input id="auditWrit" name="auditWrit" class="inputHide width98" type="text" readonly/>-->
+                        <span id="auditWrit"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审计处理：</td>
+                    <td class="borderLeft" colspan="3">
+                        <input id="auditDispose" name="dispose" class="inputHide width98 height90" type="text"
+                               readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">添加审批意见：</td>
+                    <td class="borderLeft" colspan="3">
+                        <input id="addOpinion" name="addOpinion" class="easyui-textbox "
+                               data-options="multiline:true,width:760" type="text" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bolder right">审批结果：</td>
+                    <td class="borderLeft" colspan="3">
+                        <label style="padding-left:200px;">
+                            <input type="radio" value="0" id="radio0" name="radio1"/>审批不通过
+                            <input type="radio" value="1" id="radio1" name="radio1" checked="checked"/><span
+                                id="option_ok">审批通过</span><span id="option_goon">分管领导审批</span>
+                            <input type="radio" value="2" id="radio2" name="radio1"/><span
+                                id="option_pass">审批通过</span><span id="option_jump">审批结束</span>
+                        </label>
+                    </td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="center paddingButton">
+            <a id="recheckSubmit" class="easyui-linkbutton buttonBottom" iconCls="icon-ok"> 提 交 </a>
+            <a id="recheckClose" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel"> 关 闭 </a>
+        </div>
+    </div>
+    <div id="approval" title="审批记录">
+        <div id="auditApproval"></div>
+    </div>
+    <div id="manuscript" title="复核稿纸"></div>
+</div>

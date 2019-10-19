@@ -1,0 +1,105 @@
+<script type="text/javascript" src="__STATICINDEX__/js/audit/auditParticulars.js"></script>
+<link rel="stylesheet" href="__STATICINDEX__/css/synthesisTable.css"/>
+<!--审计项目跟踪双击页面或者是新增页面-->
+    <div id="editAuditParticulars" class="padding">
+        <input type="hidden" id="pro_kid" value="{$kid}">
+        <form id="editForm">
+            <div class="easyui-panel marginBottom" title="建设单位基本信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>建设单位：</td>
+                        <td class="borderLeft" colspan="3">
+                            <input id="dw_name" name="dw_name" class="easyui-combobox width360" required>
+
+                        </td>
+                        <td class="bolder right"><span class="spanRed"> * </span>地址：</td>
+                        <td class="borderLeft"><input id="dw_address" name="dw_address" type="text" class="easyui-textbox" required readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>联系人：</td>
+                        <td class="borderLeft"><input id="dw_fullname" name="dw_fullname" type="text" class="easyui-textbox width80" required readonly></td>
+                        <td class="bolder right">邮编：</td>
+                        <td class="borderLeft"><input id="dw_zipcode" name="dw_zipcode" type="text" class="easyui-textbox width150" readonly></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>手机号码：</td>
+                        <td class="borderLeft"><input id="dw_tel" name="dw_tel" type="text" class="easyui-textbox" required readonly></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="easyui-panel marginBottom" title="项目基本信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>项目名称：</td>
+                        <td class="borderLeft" colspan="5"><input id="project_name" name="project_name" type="text" class="easyui-textbox width360" required></td>
+                    </tr>
+                    <tr><td class="bolder right"><span class="spanRed"> * </span>项目编号（发改委）：</td>
+                        <td class="borderLeft"><input id="fgw_num" name="fgw_num" type="text" class="easyui-textbox width150" required></td>
+                        <td class="bolder right" colspan="2"><span class="spanRed"> * </span>项目编号（审计局）：</td>
+                        <td class="borderLeft" colspan="2">
+                            <input id="sjj_num" name="sjj_num" type="text" class="inputHide width150"  readonly />
+                            <span class="spanRed">*</span>
+                            <span class="spanGray">项目编号(审计局)自动生成不必手动录入</span>
+                        </td>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>投资估算(万元)：</td>
+                        <td class="borderLeft"><input id="investment" name="investment" type="text" class="easyui-numberbox width150" data-options="min:0,precision:2" required></td>
+                        <td class="bolder right">建设工期：</td>
+                        <td class="borderLeft"><input id="work_year" name="work_year" type="text" class="easyui-textbox width80"><span > 年</span></td>
+                        <td class="bolder right">工程类别：</td>
+                        <td class="borderLeft">
+                            <input id="category" name="category" class="easyui-combobox width150" required>
+                            <input id="category1" name="category1" class="easyui-combobox width120" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right">建设规模及内容：</td>
+                        <td class="borderLeft" colspan="5">
+                            <textarea id="content" name="content" class="inputEas width98"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="easyui-panel marginBottom" title="审计信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>是否进行审计跟踪：</td>
+                        <td class="borderLeft" colspan="5">
+                            <select id="aduit_track" name="aduit_track" class="easyui-combobox" required>
+                                <option value="是" selected>是</option>
+                                <option value="否">否</option>
+                            </select>
+                            <span class="spanGray"> 选择是，新建项目时，可依据审计组长进行权限分配</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>审计类型：</td>
+                        <td class="borderLeft" colspan="5">
+                            <input id="aduit_type" name="aduit_type" class="easyui-combobox" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>责任科室：</td>
+                        <td class="borderLeft" colspan="5"><input id="aduit_depart" name="aduit_depart" class="easyui-combobox" required></td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>审计组长：</td>
+                        <td class="borderLeft" colspan="5">
+                            <input id="aduit_leader" name="aduit_leader" class="easyui-combobox" required><span class="spanGray"> 如果进行跟踪审计，必须选择相应的审计组长，否组项目无法进行</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>计划完成时间：</td>
+                        <td class="borderLeft"><input id="over_time" name="over_time" type="text" class="easyui-datebox width150" required></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>创建时间：</td>
+                        <td class="borderLeft"><input id="creattime" name="creattime" type="text" class="easyui-datetimebox width150"  required></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>操作员：</td>
+                        <td class="borderLeft"><input id="operation" name="operation" type="text" class="inputHide width98" required readonly></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <div class="center">
+            <a id="editNotarize" class="easyui-linkbutton buttonBottom" iconCls="icon-ok"> 确 认 </a>
+            <a id="editClosed" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel"> 关 闭 </a>
+        </div>
+    </div>
+

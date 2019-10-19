@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        #l-map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=qDskFtStbcAn3rmMA8lAaEqvy4EbpnGC"></script>
+    <title>审计监督平台GIS地图展示</title>
+</head>
+<body>
+
+
+<div id="l-map"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+    var map = new BMap.Map("l-map");
+    map.centerAndZoom(new BMap.Point(113.614069, 37.870043), 14);
+    map.enableScrollWheelZoom(true);
+    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.setCurrentCity("阳泉");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+    //阳职院
+    var pt4 = new BMap.Point(113.6320780000, 37.8961660000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker2 = new BMap.Marker(pt4, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker2);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("阳泉职业技术学院新校区建设项目", {offset: new BMap.Size(0, -60)});
+    marker2.setLabel(label);
+
+
+    label.setStyle({
+        width: "260px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+
+    });
+
+
+    var opts1 = {
+        width: 400,     // 信息窗口宽度
+        height: 120,     // 信息窗口高度
+        title: "阳泉职业技术学院新校区建设项目", // 信息窗口标题
+        enableMessage: true,//设置允许信息窗发送短息
+
+    }
+    var infoWindow1 = new BMap.InfoWindow("<div style='line-height:1.8em;font-size:12px;'>项目编号：TZSJ2016002 <br>项目投资额（万元）：65000<br>建设工期：3年 <br>远程视频：<a target=blank  href=http://59.48.216.146:81/dispatch.asp?user=zhaohuijun&pass=sjj12345&page=preview.asp[&slice=8&open={1,2,3,4,5,6,7,8}]>点击进入</a>", opts1);  // 创建信息窗口对象
+
+    marker2.addEventListener("click", function () {
+        map.openInfoWindow(infoWindow1, pt4); //开启信息窗口
+
+    });
+
+
+    //阳职院A区域
+    var pt5 = new BMap.Point(113.6283010000, 37.8966250000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker5 = new BMap.Marker(pt5, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker5);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程A区域", {offset: new BMap.Size(0, -20)});
+    marker5.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //阳职院A区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6277350000, 37.8981060000),
+        new BMap.Point(113.6299890000, 37.8980280000),
+        new BMap.Point(113.6289020000, 37.8969050000),
+        new BMap.Point(113.6293870000, 37.8963280000),
+        new BMap.Point(113.6289020000, 37.8958080000),
+        new BMap.Point(113.6294950000, 37.8942620000),
+        new BMap.Point(113.6266300000, 37.8947460000),
+        new BMap.Point(113.6271780000, 37.8967180000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#02DF82", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //阳职院b区域
+    var pt6 = new BMap.Point(113.6314900000, 37.8970170000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker6 = new BMap.Marker(pt6, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker6);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程B区域", {offset: new BMap.Size(0, -20)});
+    marker6.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //阳职院B区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6299890000, 37.8980280000),
+        new BMap.Point(113.6335470000, 37.8981340000),
+        new BMap.Point(113.6361160000, 37.8983190000),
+        new BMap.Point(113.6351990000, 37.8963710000),
+        new BMap.Point(113.6336540000, 37.8957440000),
+        new BMap.Point(113.6293870000, 37.8963280000),
+
+        new BMap.Point(113.6289020000, 37.8969050000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#00BB00", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //阳职院C区域
+    var pt7 = new BMap.Point(113.6323070000, 37.8949880000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker7 = new BMap.Marker(pt7, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker7);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程C区域", {offset: new BMap.Size(0, -20)});
+    marker7.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //阳职院C区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6293870000, 37.8963280000),
+        new BMap.Point(113.6336540000, 37.8957440000),
+        new BMap.Point(113.6351990000, 37.8963710000),
+        new BMap.Point(113.6347410000, 37.8937940000),
+        new BMap.Point(113.6294950000, 37.8942620000),
+        new BMap.Point(113.6289020000, 37.8958080000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#ADFEDC", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+    //阳职院D区域
+    var pt8 = new BMap.Point(113.6371850000, 37.8958560000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker8 = new BMap.Marker(pt8, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker8);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程D区域", {offset: new BMap.Size(0, -20)});
+    marker8.setLabel(label);
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //阳职院整体覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6277350000, 37.8981060000),
+        new BMap.Point(113.6299890000, 37.8980280000),
+        new BMap.Point(113.6335470000, 37.8981340000),
+        new BMap.Point(113.6361160000, 37.8983190000),
+        new BMap.Point(113.6380650000, 37.8984050000),
+        new BMap.Point(113.6390530000, 37.8958630000),
+        new BMap.Point(113.6384780000, 37.8934860000),
+        new BMap.Point(113.6352450000, 37.8937280000),
+        new BMap.Point(113.6333850000, 37.8938130000),
+
+        new BMap.Point(113.6294950000, 37.8942620000),
+        new BMap.Point(113.6266300000, 37.8947460000),
+        new BMap.Point(113.6271780000, 37.8967180000)
+
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#CEFFCE", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+    //养老院
+    var pt = new BMap.Point(113.6346600000, 37.8435040000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+
+    var marker3 = new BMap.Marker(pt, {icon: myIcon});
+    map.addOverlay(marker3);
+
+    var opts = {
+        width: 400,     // 信息窗口宽度
+        height: 120,     // 信息窗口高度
+        title: "养老院基本信息", // 信息窗口标题
+        enableMessage: true,//设置允许信息窗发送短息
+        // message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+    }
+    var infoWindow = new BMap.InfoWindow("<div style='line-height:1.8em;font-size:12px;'>项目编号：TZSJ2016003 <br>项目投资额（万元）：9800<br>建设工期：1年 <br>远程视频：<a target=blank  href=http://118.80.22.178:38909/dispatch.asp?user=zhj&pass=zhj123456&page=preview.asp[&slice=4&open={1,2,3,4,5,6,7,8}]>点击进入</a>", opts);  // 创建信息窗口对象
+
+    marker3.addEventListener("click", function () {
+        map.openInfoWindow(infoWindow, pt); //开启信息窗口
+
+    });
+
+    var label = new BMap.Label("养老公益苑", {offset: new BMap.Size(0, -20)});
+    marker3.setLabel(label);
+    label.setStyle({
+        width: "200px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //养老院A区域
+    var pt5 = new BMap.Point(113.6350470000, 37.8428410000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker5 = new BMap.Marker(pt5, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker5);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程A区域", {offset: new BMap.Size(0, -20)});
+    marker5.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //养老院A区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6358730000, 37.8435030000),
+        new BMap.Point(113.6359990000, 37.8429620000),
+        new BMap.Point(113.6355190000, 37.8421820000),
+        new BMap.Point(113.6341670000, 37.8424030000),
+        new BMap.Point(113.6344680000, 37.8432930000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#02DF82", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //养老院b区域
+    var pt6 = new BMap.Point(113.6342030000, 37.8441370000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker6 = new BMap.Marker(pt6, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker6);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程B区域", {offset: new BMap.Size(0, -20)});
+    marker6.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //养老院B区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6326260000, 37.8442730000),
+        new BMap.Point(113.6334750000, 37.8445010000),
+
+        new BMap.Point(113.6344230000, 37.8445930000),
+        new BMap.Point(113.6352400000, 37.8443940000),
+        new BMap.Point(113.6359540000, 37.8438590000),
+        new BMap.Point(113.6358730000, 37.8435030000),
+        new BMap.Point(113.6344680000, 37.8432930000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#00BB00", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //养老院C区域
+    var pt7 = new BMap.Point(113.6328330000, 37.8434360000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker7 = new BMap.Marker(pt7, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker7);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程C区域", {offset: new BMap.Size(0, -20)});
+    marker7.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //养老院
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.6326260000, 37.8442730000),
+        new BMap.Point(113.6334750000, 37.8445010000),
+        new BMap.Point(113.6344230000, 37.8445930000),
+        new BMap.Point(113.6352400000, 37.8443940000),
+        new BMap.Point(113.6359540000, 37.8438590000),
+        new BMap.Point(113.6358730000, 37.8435030000),
+        new BMap.Point(113.6359990000, 37.8429620000),
+        new BMap.Point(113.6355190000, 37.8421820000),
+        new BMap.Point(113.6341670000, 37.8424030000),
+        new BMap.Point(113.6333810000, 37.8429830000),
+        new BMap.Point(113.6333810000, 37.8429830000),
+        new BMap.Point(113.6325000000, 37.8425910000),
+        new BMap.Point(113.6319340000, 37.8425240000),
+        new BMap.Point(113.6315210000, 37.8427340000),
+        new BMap.Point(113.6322080000, 37.8436100000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#CEFFCE", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //三泉A区域
+    var pt5 = new BMap.Point(113.5951840000, 37.9295070000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker5 = new BMap.Marker(pt5, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker5);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程A区域", {offset: new BMap.Size(0, -20)});
+    marker5.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //三泉A区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5941160000, 37.9306270000),
+        new BMap.Point(113.5964960000, 37.9300580000),
+        new BMap.Point(113.5953190000, 37.9280300000),
+        new BMap.Point(113.5939360000, 37.9281370000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#02DF82", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //三泉b区域
+    var pt6 = new BMap.Point(113.5971330000, 37.9289370000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker6 = new BMap.Marker(pt6, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker6);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程B区域", {offset: new BMap.Size(0, -20)});
+    marker6.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //三泉B区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5964960000, 37.9300580000),
+        new BMap.Point(113.5979420000, 37.9296520000),
+        new BMap.Point(113.5989130000, 37.9275680000),
+        new BMap.Point(113.5953190000, 37.9280300000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#00BB00", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //三泉C区域
+    var pt7 = new BMap.Point(113.5997650000, 37.9285670000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker7 = new BMap.Marker(pt7, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker7);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程C区域", {offset: new BMap.Size(0, -20)});
+    marker7.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //三泉C区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5979420000, 37.9296520000),
+        new BMap.Point(113.6017060000, 37.9284930000),
+        new BMap.Point(113.5989130000, 37.9275680000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#ADFEDC", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+    //三泉D区域
+    var pt8 = new BMap.Point(113.5951030000, 37.9272080000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker8 = new BMap.Marker(pt8, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker8);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程D区域", {offset: new BMap.Size(0, -20)});
+    marker8.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //三泉棚户区改造
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5941160000, 37.9306270000),
+        new BMap.Point(113.5964960000, 37.9300580000),
+        new BMap.Point(113.5979420000, 37.9296520000),
+        new BMap.Point(113.6017060000, 37.9284930000),
+        new BMap.Point(113.5989130000, 37.9275680000),
+        new BMap.Point(113.5982660000, 37.9268990000),
+        new BMap.Point(113.5961730000, 37.9265430000),
+        new BMap.Point(113.5937560000, 37.9263860000),
+        new BMap.Point(113.5939360000, 37.9281370000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#CEFFCE", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //南庄矿A区域
+    var pt5 = new BMap.Point(113.5912500000, 37.8448780000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker5 = new BMap.Marker(pt5, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker5);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程A区域", {offset: new BMap.Size(0, -20)});
+    marker5.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //南庄矿A区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5887610000, 37.8452740000),
+        new BMap.Point(113.5944430000, 37.8450920000),
+        new BMap.Point(113.5943440000, 37.8448110000),
+        new BMap.Point(113.5887030000, 37.8448680000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#02DF82", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //南庄矿b区域
+    var pt6 = new BMap.Point(113.5911330000, 37.8443260000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker6 = new BMap.Marker(pt6, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker6);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程B区域", {offset: new BMap.Size(0, -20)});
+    marker6.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //南庄矿B区覆盖物
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5887030000, 37.8448680000),
+        new BMap.Point(113.5943440000, 37.8448110000),
+        new BMap.Point(113.5930730000, 37.8439380000),
+        new BMap.Point(113.5890260000, 37.8443400000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#00BB00", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //南庄矿C区域
+    var pt7 = new BMap.Point(113.5904990000, 37.8437530000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/area.png", new BMap.Size(45, 70));
+    //var myIcon1 = new BMap.Icon("../BmapProject/icon/sxt.png", new BMap.Size(-60,70));
+    var marker7 = new BMap.Marker(pt7, {icon: myIcon});
+    //var marker6 = new BMap.Marker(pt4,{icon:myIcon1});
+    map.addOverlay(marker7);
+    //map.addOverlay(marker6);
+
+    var label = new BMap.Label("工程C区域", {offset: new BMap.Size(0, -20)});
+    marker7.setLabel(label);
+
+
+    label.setStyle({
+        width: "80px",
+        fontSize: "12px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //南庄矿
+    var polygon = new BMap.Polygon([
+        new BMap.Point(113.5887610000, 37.8452740000),
+        new BMap.Point(113.5944430000, 37.8450920000),
+        new BMap.Point(113.5943440000, 37.8448110000),
+        new BMap.Point(113.5920980000, 37.8433290000),
+        new BMap.Point(113.5890940000, 37.8435000000),
+        new BMap.Point(113.5890940000, 37.8435000000),
+        new BMap.Point(113.5885590000, 37.8446080000),
+        new BMap.Point(113.5887030000, 37.8448680000),
+        new BMap.Point(113.5887030000, 37.8448680000)
+    ], {strokeWeight: 1, strokeColor: "#ff0000", strokeOpacity: 0.5, fillColor: "#CEFFCE", strokeStyle: "dashed"});  //创建多边形
+    map.addOverlay(polygon);           //增加多边形
+
+
+    //中环快速路
+    var polyline = new BMap.Polyline([
+        new BMap.Point(113.6373740000, 37.8931150000),
+        new BMap.Point(113.6197670000, 37.8950510000),
+        new BMap.Point(113.5936090000, 37.8993800000),
+        new BMap.Point(113.5762170000, 37.9017710000),
+
+        new BMap.Point(113.5691390000, 37.8892140000),
+        new BMap.Point(113.5610900000, 37.8763970000),
+        new BMap.Point(113.5577840000, 37.8695040000),
+        new BMap.Point(113.5686360000, 37.8645470000),
+        new BMap.Point(113.5794510000, 37.8480510000),
+        new BMap.Point(113.5957640000, 37.8495610000),
+        new BMap.Point(113.6040650000, 37.8466270000),
+        new BMap.Point(113.6273130000, 37.8495330000),
+        new BMap.Point(113.6286420000, 37.8595330000),
+        new BMap.Point(113.6323080000, 37.8709570000),
+        new BMap.Point(113.6353620000, 37.8825490000),
+        new BMap.Point(113.6373740000, 37.8931150000)
+
+    ], {strokeColor: "red", strokeWeight: 4, strokeOpacity: 0.5, fillColor: "#FFB5B5"});
+
+    map.addOverlay(polyline);
+
+    //南庄
+    var pt1 = new BMap.Point(113.5931900000, 37.8447470000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+    var marker4 = new BMap.Marker(pt1, {icon: myIcon});
+    map.addOverlay(marker4);
+
+
+    //三泉
+    var pt3 = new BMap.Point(113.5959430000, 37.9284720000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+    var marker5 = new BMap.Marker(pt3, {icon: myIcon});
+    map.addOverlay(marker5);
+    //
+    //漾泉大道二期
+    var pt2 = new BMap.Point(113.5610900000, 37.8763970000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+    var marker6 = new BMap.Marker(pt2, {icon: myIcon});
+    map.addOverlay(marker6);
+
+
+    //中环快速路
+    var pt2 = new BMap.Point(113.5936090000, 37.8993800000);
+    var myIcon = new BMap.Icon("../BmapProject/icon/Map.png", new BMap.Size(45, 70));
+    var marker7 = new BMap.Marker(pt2, {icon: myIcon});
+    map.addOverlay(marker7);
+
+    //
+    var label = new BMap.Label("养老公益苑", {offset: new BMap.Size(0, -20)});
+    marker3.setLabel(label);
+    label.setStyle({
+        width: "200px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    var label = new BMap.Label("南庄保障房", {offset: new BMap.Size(0, -60)});
+    marker4.setLabel(label);
+    label.setStyle({
+        width: "150px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    //
+    var label = new BMap.Label("三泉棚户区改造", {offset: new BMap.Size(0, -60)});
+    marker5.setLabel(label);
+    label.setStyle({
+        width: "160px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+    //
+    var label = new BMap.Label("漾泉大道二期", {offset: new BMap.Size(0, -30)});
+    marker6.setLabel(label);
+    label.setStyle({
+        width: "150px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+    var label = new BMap.Label("中环快速路", {offset: new BMap.Size(0, -30)});
+    marker7.setLabel(label);
+    label.setStyle({
+        width: "200px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    });
+
+
+</script>

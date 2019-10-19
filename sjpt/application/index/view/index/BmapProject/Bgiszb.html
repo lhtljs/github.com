@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="__CSS__/public.css">
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 12px;
+            font-family: "微软雅黑";
+            background: #dbdbdb;
+        }
+
+        .l-map {
+            width: 240px;
+            height: 180px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        #l-map {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        #golist {
+            display: none;
+        }
+
+        @media (max-device-width: 780px) {
+            #golist {
+                display: block !important;
+            }
+        }
+
+        #divLong {
+            position: absolute;
+            left: 50%;
+            margin-left: -200px;
+            top: 15px;
+            z-index: 2;
+        }
+
+        #longitude {
+            width: 400px;
+            height: 22px;
+            font-size: 18px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #74bbff;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px #92bbda;
+        }
+
+        .spanLong {
+            font-size: 15px;
+            display: inline-block;
+            position: absolute;
+            left: 10px;
+            top: 7px;
+            color: #c1c1c1;
+        }
+
+        .buttonLong {
+            width: 88px;
+            height: 32px;
+            line-height: 22px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #74bbff;
+            background: #f4f4f4;
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+    <include file="Public/head"/>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=qDskFtStbcAn3rmMA8lAaEqvy4EbpnGC"></script>
+    <script type="text/javascript" src="__JS__/MarkerCluster.js"></script>
+    <script type="text/javascript" src="__JS__/textIconOverlay.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+    <title>审计监督平台GIS地图展示</title>
+</head>
+<body>
+<div id="divLong"><span class="spanLong">经纬度取值：</span><input type="text" id="longitude" name="longitude">
+    <button class="buttonLong" onClick="jsCopy();">复制</button>
+</div>
+<div id="l-map"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+    $(function () {
+        map_init();
+    });
+    var cssdxC = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssdx1 = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#0080FF',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssdx2 = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC1 = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#0072E3',
+        border: '1px solid "#0066CC"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC2 = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: 'red',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+    function jsCopy() {
+        var e = document.getElementById("longitude");//对象是copy-num1
+        e.select(); //选择对象
+        document.execCommand("Copy"); //执行浏览器复制命令
+        alert("复制成功");
+    }
+    //地图初始化载入数据
+    function map_init() {
+        var map = new BMap.Map("l-map");
+        map.centerAndZoom(new BMap.Point(113.614069, 37.870043), 13);
+        map.enableScrollWheelZoom(true);
+        map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        map.setCurrentCity("阳泉城区");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩
+        map.addEventListener("click", function (e) {
+            $("#longitude").val(e.point.lng + ',' + e.point.lat);
+
+        });
+
+        //项目坐标点抛洒
+        var label = new Array();
+        $.post(ThinkPHP['MODULE'] + '/index/get_xmzhxx_map', {type: "xmzhxx"}, function (respon) {
+            xmzhxxArr = JSON.parse(respon);
+
+            for (var i = 0; i < xmzhxxArr.length; i++) {
+                var p0 = xmzhxxArr[i].jwd.split(",")[0];
+                var p1 = xmzhxxArr[i].jwd.split(",")[1];
+                var maker = addMarker(new window.BMap.Point(p0, p1), i);
+                //addInfoWindow(maker, xmzhxxArr[i]);
+            }
+        });
+
+        //单项工程坐标点抛洒
+        var dxlabel = new Array();
+        $.post(ThinkPHP['MODULE'] + '/index/get_dx_map', {type: "dx"}, function (respon) {
+            dxArr = JSON.parse(respon);
+
+            var myIcon = new BMap.Icon("__IMG__/icon/dx.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25)
+                    });
+            var markers = new Array();
+            for (var i = 0; i < dxArr.length; i++) {
+                var p0 = dxArr[i].longitude.split(",")[0];
+                var p1 = dxArr[i].longitude.split(",")[1];
+                var point = new BMap.Point(p0, p1);
+                var marker = new BMap.Marker(point, {icon: myIcon});
+                markers.push(marker);
+                var maker = adddxMarker(marker, i);
+                //adddxInfoWindow(marker, dxArr[i]);
+            }
+            ;
+
+            //添加聚合效果。
+            var markerClusterer = new BMapLib.MarkerClusterer(map,
+                    {
+                        markers: markers,
+                        girdSize: 100,
+                        styles: [{
+                            url: '__IMG__/icon/blue.png',
+                            size: new BMap.Size(70, 70),
+                            backgroundColor: '#E64B4E',
+                            background: 'no-repeat'
+                        }]
+                    });
+
+        });
+
+        //项目坐标覆盖物，蓝色覆盖
+        $.post(ThinkPHP['MODULE'] + '/index/get_xmzb_map', {type: "dx"}, function (respon) {
+            arr = JSON.parse(respon);
+
+            var mapv = {},
+                    dest = [];
+            for (var i = 0; i < arr.length; i++) {
+                var ai = arr[i];
+                //console.log(ai)
+                if (!mapv[ai.kid]) {
+
+                    dest.push({
+                        kid: ai.kid,
+                        pro_category: ai.pro_category,
+                        pro_category1: ai.pro_category1,
+                        data: [ai]
+                    });
+                    mapv[ai.kid] = ai;
+
+                } else {
+
+                    for (var j = 0; j < dest.length; j++) {
+                        var dj = dest[j];
+                        if (dj.kid == ai.kid) {
+                            dj.data.push(ai);
+                            break;
+                        }
+                    }
+                }
+            }
+            ;
+//			console.log(dest)
+            $.each(dest, function (i, v) { //循环过滤的KID
+                var jzwArray = [];
+
+                for (var j = 0; j < v.data.length; j++) {
+                    var p0 = v.data[j].jwd.split(",")[0];
+                    var p1 = v.data[j].jwd.split(",")[1];
+                    jzwArray[j] = new BMap.Point(p0, p1);
+                }
+
+                if (v.pro_category == "铁路工程" || v.pro_category == "公路工程" || (v.pro_category == "市政公用工程") && v.pro_category1 == "城市道路") {
+                    var jzwArray = new BMap.Polyline(jzwArray, {
+                        strokeColor: "red",
+                        strokeWeight: 4,
+                        strokeOpacity: 0.5,
+                        fillColor: "#FFB5B5"
+                    })
+                    map.addOverlay(jzwArray);
+                } else {
+                    var jzw = new BMap.Polygon(jzwArray, {
+                        strokeWeight: 1,
+                        strokeColor: "#0072E3",
+                        strokeOpacity: 0.5,
+                        fillColor: "#ECF5FF",
+                        strokeStyle: "dashed"
+                    })
+                    map.addOverlay(jzw);
+                }
+
+            });
+        });
+
+        // 添加标注
+        function addMarker(point, index) {
+            var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25),
+                        imageOffset: new BMap.Size(0, 0 - index * 25)
+                    });
+            var marker = new BMap.Marker(point, {icon: myIcon});
+            map.addOverlay(marker);
+            label[index] = new window.BMap.Label(xmzhxxArr[index].pro_name, {offset: new window.BMap.Size(10, -30)});
+            marker.setLabel(label[index]);
+            label[index].setStyle(cssC);
+            //添加鼠标移动事件
+            marker.addEventListener("mouseover",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            label[k].setStyle(cssC1);
+                        }
+                    })(index)
+            );
+            //添加鼠标离开事件
+            marker.addEventListener("mouseout",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            label[k].setStyle(cssC2);
+                        }
+                    })(index)
+            );
+            return marker;
+        }
+
+        function adddxMarker(point, index) {
+            var myIcon = new BMap.Icon("__IMG__/icon/dx.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25)
+                    });
+            //var marker = new BMap.Marker(point, { icon: myIcon });
+            //map.addOverlay(marker);
+
+            dxlabel[index] = new window.BMap.Label(dxArr[index].sn, {offset: new window.BMap.Size(10, -30)});
+            point.setLabel(dxlabel[index]);
+            dxlabel[index].setStyle(cssdxC);
+
+
+            //添加鼠标移动事件
+            point.addEventListener("mouseover",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            dxlabel[k].setStyle(cssdx1);
+                        }
+                    })(index)
+            );
+            //添加鼠标离开事件
+            point.addEventListener("mouseout",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            dxlabel[k].setStyle(cssdx2);
+                        }
+                    })(index)
+            );
+
+            return point;
+        }
+    }
+
+</script>

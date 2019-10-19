@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script type="text/javascript" src="__STATICINDEX__/js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__STATICINDEX__/js/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="__STATICINDEX__/js/easyui/themes/icon.css"/>
+<script type="text/javascript" src="__STATICINDEX__/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/jquery/jquery.easyui.validatebox.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/jquery/jquery.json.min.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/jquery/jquery.serializejson.js"></script>
+
+<!--下面的JS是公用JS，调用数据在HTML5里批量赋值-->
+<script type="text/javascript" src="__STATICINDEX__/js/easyui/public.js"></script>
+<script type="text/javascript" src="__STATICINDEX__/js/common/gpy.js"></script>
+<link rel="stylesheet" href="__STATICINDEX__/css/public.css">
+
+<script>
+    var ThinkPHP = {
+        'MODULE': '/index',
+//        'PUBLIC':'__CONTROLLER__',
+        'ORGNAME': '{$Think.session.user.orgname}',//当前使用者类型，审计局，建设单位，市领导，审批单位
+        'SESSION': '{$Think.session.user.fullname}',//当前使用者的中文姓名
+        'DEPART': '{$Think.session.user.depart}', //当前使用者部门
+        'USERID': '{$Think.session.user.id}',
+        'POSITION': '{$Think.session.user.position}', //当前使用者职务
+        'UPLOADS': '__UPLOADS__',
+        'DFPDF': '__PDF__',
+        'IMG': '__STATICINDEX__/img/',
+        'USER': '{$Think.session.user.user}',
+        'UID': '{$Think.session.user.uid}'
+    };
+
+</script>

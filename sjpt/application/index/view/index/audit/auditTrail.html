@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>进行审计跟踪项目</title>
+    {include file="public/head" /}
+    <script type="text/javascript" src="__STATICINDEX__/js/audit/auditTrail.js"></script>
+    <script type="text/javascript" src="__STATICINDEX__/js/audit/jquery.jdirk.js"></script>
+    <script type="text/javascript" src="__STATICINDEX__/js/audit/jeasyui.extensions.combobox.getSelections.js"></script>
+    <link rel="stylesheet" href="__STATICINDEX__/css/synthesisTable.css">
+</head>
+<body>
+    <!-- S 进行审计跟踪数据 -->
+    <div id="auditTrailTitle">
+        <form>
+            <label>&nbsp;&nbsp;项目名称：</label><input id="seachval" name="seachval" class="easyui-textbox"/>
+            <a id="seachdata" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search()"> 查 询 </a>
+        </form>
+    </div>
+    <!-- 显示项目数据列表datagrid-->
+    <div id="auditTrails"></div>
+
+    <div class="center paddingButton">
+        <a id="addAuditTrail" class="easyui-linkbutton buttonBottom" iconCls="icon-add"> 添加审计跟踪项目 </a>
+    </div>
+    <!-- E 进行审计跟踪数据 -->
+
+    <!-- S 进行审计跟踪数据 双击弹出页面 -->
+    <div id="alterAuditTrail"></div>
+    <!-- 进行审计跟踪数据 (只读数据)双击弹出页面-->
+    <div id="alertAuditTrailWatch"></div>
+    <!-- E 进行审计跟踪数据 双击弹出页面 -->
+
+    <!-- S 进行审计跟踪数据 点击进入按钮弹出页面 -->
+    <div id="accessBtn"></div>
+    <div id="accessBtnwatch"></div>
+    <!-- E 进行审计跟踪数据 点击进入按钮弹出页面 -->
+</body>
+</html>

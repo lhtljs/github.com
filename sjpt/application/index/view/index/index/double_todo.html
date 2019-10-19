@@ -1,0 +1,85 @@
+<script type="text/javascript">
+    var session_todo = "{$Think.session.user}";
+    console.log(session_todo)
+</script>
+<script type="text/javascript" src="__STATICINDEX__/js/double_todo.js"></script>
+<link rel="stylesheet" href="__STATICINDEX__/css/synthesisTable.css"/>
+<script type="text/javascript" src="__STATICINDEX__/js/dropzone/dropzone.js"></script>
+<link rel="stylesheet" href="__STATICINDEX__/js/dropzone/dropzone.css"/>
+<style>
+    #alert_hecha {
+        height: 146px;
+    }
+
+    .dz-preview {
+        height: 120px !important;
+        margin: 0 !important;
+    }
+</style>
+<div id="postMessage" class="easyui-panel marginBottom" title="核查发布信息">
+    <form id="postForm">
+        <table class="table">
+            <tr>
+                <td class="bolder right ">核查编号：</td>
+                <td class="borderLeft" colspan="2"><input name="num" class="inputHide width180" type="text" readonly/>
+                </td>
+                <td class="bolder right ">核查名称：</td>
+                <td class="borderLeft" colspan="2">
+                    <input name="inspectname" class="inputHide width500" type="text" readonly/>
+                </td>
+            </tr>
+            <tr>
+                <td class="bolder right">核查内容：</td>
+                <td class="borderLeft" colspan="5">
+                    <textarea name="content" class="inputHide width98" type="text height50" readonly/></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="bolder right">发布时间：</td>
+                <td class="borderLeft "><input name="xdtime" class="inputHide width98" type="text" readonly/></td>
+                <td class="bolder right width120">文件接收人：</td>
+                <td class="borderLeft"><input name="receive" class="inputHide width98" type="text" readonly/></td>
+                <td class="bolder right ">文件附件：</td>
+                <td class="borderLeft"><span id="accessory" name="accessory"></span></td>
+            </tr>
+        </table>
+    </form>
+    <div class="center marginBottom">
+        <a id="hcwc" class="easyui-linkbutton buttonBottom" iconCls="icon-ok"> 确认完成 </a>
+    </div>
+</div>
+<div id="replyCase" class="easyui-panel marginBottom" title="回复情况" data-options="height:180">
+    <div id="replyCase_data"></div>
+</div>
+<div id="replyMessage" class="easyui-panel" title="回复情况">
+    <form id="replyForm">
+        <table class="table marginBottom">
+            <tr>
+                <td class="bolder right width120">文件附件：</td>
+                <td class="borderLeft">
+                    <!--<input id="replyAccessory" name="replyAccessory" class="inputHide width98" type="text" disabled/>-->
+                    <div class="dropzone" id="alert_hecha">
+                        <div class="am-text-success dz-message">
+                            将文件拖拽到此处<br>或点此打开文件管理器选择文件
+                        </div>
+                    </div>
+                </td>
+                <td class="bolder right width120">发送人：</td>
+                <td class="borderLeft width120"><input id="sender" name="sender" class="inputHide width98" type="text"
+                                                       readonly/></td>
+            </tr>
+            <tr>
+                <!-- inputEas width98-->
+                <td class="bolder right">回复内容：</td>
+                <td class="borderLeft" colspan="3">
+                    <input id="replyContent" name="replyContent" class="easyui-textbox" type="text"
+                           data-options="width:900" required>
+                </td>
+            </tr>
+        </table>
+        <div class="center marginBottom">
+            <a id="send" class="easyui-linkbutton buttonBottom" iconCls="icon-redo"> 发 送 </a>
+            <a id="close1" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel"> 关 闭 </a>
+        </div>
+    </form>
+</div>

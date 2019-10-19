@@ -1,0 +1,57 @@
+<script type="text/javascript" src="__JS__/dropzone/dropzone.js"></script>
+<link rel="stylesheet" href="__JS__/dropzone/dropzone.css"/>
+<script type="text/javascript" src="__JS__/gztz/gztzadd.js"></script>
+<style>
+    /* -- 删除按钮 -- */
+    .btn {
+        -webkit-box-shadow: none;
+        border: 1px solid transparent;
+        padding: 3px 4px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        vertical-align: middle;
+        border-radius: 4px;
+        margin: 3px;
+        cursor: pointer;
+        background-color: #3c8dbc;
+    }
+</style>
+<div class="padding" title="公告">
+    <form id="gztz_formadd">
+        <!-- S 基本信息 -->
+        <input type="hidden" name="kid"/>
+        <table class="table">
+            <tr>
+                <td class="bolder right width150">公告标题：</td>
+                <td class="borderLeft">
+                    <input name="tzbt" class="easyui-textbox" missingMessage="必须输入"
+                           data-options="required:true,width:400,validType:'length[1,29]' "
+                           invalidMessage="最多能输入29个汉字"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="bolder right">公告内容：</td>
+                <td class="borderLeft"><input name="tznr" class="easyui-textbox"
+                                              data-options="multiline:true,width:630,height:100" required/></td>
+            </tr>
+            <tr>
+                <td class="bolder right">公告发布日期</td>
+                <td class="borderLeft"><input name="fbsj" type="text" class="easyui-datebox" required></td>
+            </tr>
+            <tr>
+                <td class="bolder right">已上传附件：</td>
+                <td class="borderLeft"><span id="filename"></span></td>
+            </tr>
+            <tr>
+                <td class="bolder right">附件：</td>
+                <td class="borderLeft">
+                    <div id="gzgz_files" class="dropzone"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="center paddingButton">
+        <a id="savetz" class="easyui-linkbutton buttonBottom" iconCls="icon-save">保 存</a>
+        <a id="closetz" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel">关 闭</a>
+    </div>
+</div>

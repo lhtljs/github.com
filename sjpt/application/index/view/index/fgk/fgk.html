@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投资项目法规库</title>
+    {include file="public/head" /}
+    <link rel="stylesheet" href="__STATICINDEX__/css/synthesisTable.css">
+    <script type="text/javascript" src="__STATICINDEX__/js/common/addtabs.js"></script>
+    <script type="text/javascript" src="__STATICINDEX__/js/fgk/fgk.js"></script>
+</head>
+<body class="padding">
+    <div id="fgkTitle">
+        <form id="fgkFrom">
+            <label>&nbsp;&nbsp;名称：</label><input id="fgkInput" name="fgkInput" class="easyui-textbox"/>
+            <a id="query" class="easyui-linkbutton" iconCls="icon-search" onclick="fgk_obj.search();"> 查 询 </a>
+        </form>
+    </div>
+    <div id="fgklist"></div>
+</body>
+</html>

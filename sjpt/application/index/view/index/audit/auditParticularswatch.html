@@ -1,0 +1,110 @@
+<!-- 进行审计跟踪项目，双击（只读页面） -->
+
+<script type="text/javascript">
+    $(function () {
+        //console.log(project_trail);
+        if(project_trail){
+            $('#editFormW').form('clear').form("load", convertJsonToForm(project_trail));
+        }
+
+        $('#editClose').click(function () {
+            $('#alertAuditTrailWatch').dialog('close')
+        });
+    });
+</script>
+    <!--<script type="text/javascript" src="__JS__/easyui/public.js"></script>-->
+    <div id="editAuditParticulars" class="padding">
+        <form id="editFormW">
+            <div class="easyui-panel marginBottom" title="建设单位基本信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>建设单位：</td>
+                        <td class="borderLeft" colspan="3">
+                            <input id="editNameW" name="dw_name" class="inputHide width360" readonly/>
+                        </td>
+                        <td class="bolder right"><span class="spanRed"> * </span>地址：</td>
+                        <td class="borderLeft"><input id="editSiteW" name="dw_address" type="text" class="inputHide" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>联系人：</td>
+                        <td class="borderLeft"><input id="editContactsW" name="dw_fullname" type="text" class="inputHide width80" readonly/></td>
+                        <td class="bolder right">邮编：</td>
+                        <td class="borderLeft"><input id="editPostcodeW" name="dw_zipcode" type="text" class="inputHide width150" readonly/></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>手机号码：</td>
+                        <td class="borderLeft"><input id="editCellphoneW" name="dw_tel" type="text" class="inputHide" readonly/></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="easyui-panel marginBottom" title="项目基本信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>项目名称：</td>
+                        <td class="borderLeft" colspan="5"><input id="projectNameW" name="project_name" type="text" class="inputHide width360" readonly/></td>
+                    </tr>
+                    <tr><td class="bolder right"><span class="spanRed"> * </span>项目编号（发改委）：</td>
+                        <td class="borderLeft"><input id="itemNumberW" name="fgw_num" type="text" class="inputHide width150" readonly/></td>
+                        <td class="bolder right" colspan="2"><span class="spanRed"> * </span>项目编号（审计局）：</td>
+                        <td class="borderLeft" colspan="2">
+                            <input id="projectNumberW" name="sjj_num" type="text" class="inputHide width150" readonly/>
+                        </td>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>投资估算：</td>
+                        <td class="borderLeft"><input id="investBudgetW" name="investment" type="text" class="inputHide width150" readonly/></td>
+                        <td class="bolder right">建设工期：</td>
+                        <td class="borderLeft">
+                            <input id="constructionPeriodW" name="work_year" type="text" class="inputHide width80">
+                            <span class="spanGray"> 年</span>
+                        </td>
+                        <td class="bolder right">工程类别：</td>
+                        <td class="borderLeft">
+                            <input id="projectCategoryW" name="category" class="inputHide width150" readonly/>
+                            <input id="projectSecondW" name="category1" class="inputHide width120" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right">建设规模及内容：</td>
+                        <td class="borderLeft" colspan="5">
+                            <textarea id="constructionContentW" name="content" class="inputHide width98" readonly></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="easyui-panel marginBottom" title="审计信息">
+                <table class="table">
+                    <tr>
+                        <td class="bolder right width180"><span class="spanRed"> * </span>是否进行审计跟踪：</td>
+                        <td class="borderLeft" colspan="5">
+                            <input id="YNW" name="aduit_track" class="inputHide" readonly/>
+                            <span class="spanGray"> 选择是，新建项目时，可依据审计组长进行权限分配</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>审计类型：</td>
+                        <td class="borderLeft" colspan="5"><input id="auditTypeW" name="aduit_type" class="inputHide" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>责任科室：</td>
+                        <td class="borderLeft" colspan="5"><input id="dutyOfficeW" name="aduit_depart" class="inputHide" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>审计组长：</td>
+                        <td class="borderLeft" colspan="5">
+                            <input id="auditHeadmanW" name="aduit_leader" class="inputHide" readonly/>
+                            <span class="spanGray"> 如果进行跟踪审计，必须选择相应的审计组长，否组项目无法进行</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bolder right"><span class="spanRed"> * </span>计划完成时间：</td>
+                        <td class="borderLeft"><input id="planTimeW" name="over_time" type="text" class="inputHide width150" readonly/></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>创建时间：</td>
+                        <td class="borderLeft"><input id="foundTimeW" name="creattime" type="text" class="inputHide width150" readonly/></td>
+                        <td class="bolder right"><span class="spanRed"> * </span>操作员：</td>
+                        <td class="borderLeft"><input id="operatorW" name="operation" type="text" class="inputHide width80" readonly/></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <div class="center">
+            <a id="editClose" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel"> 关 闭 </a>
+        </div>
+    </div>

@@ -1,0 +1,75 @@
+<script type="text/javascript">
+    $(function () {
+        $('#gztz_form').form('clear').form('load', convertJsonToForm(gztz));
+        get_files(gztz.kid);
+        $('#closetz_read').click(function () {
+            $('#gztzread').dialog('close');
+        })
+    });
+    function get_files(nkid) {
+        $.post(ThinkPHP['MODULE'] + '/underway/get_ht_files', {kid: nkid}, function (respon) {
+            var files = JSON.parse(respon);
+            var files_url = [];
+            $.each(files, function (i, v) {
+                files_url[i] = v.files_url;
+            });
+            $('#filename').html(files_url.join('&nbsp;'));
+        });
+    }
+</script>
+<style>
+    .padding textarea {
+        resize: none;
+        text-indent: 25px;
+        width: 100%;
+        height: 300px;
+    }
+
+    .text-center {
+        width: 100% !important;
+        font-size: 20px;
+        font-weight: bolder;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .inputGrey {
+        color: grey;
+        padding-left: 10px;
+    }
+
+    .tah {
+        font-family: "Tahoma";
+        letter-spacing: 1px;
+    }
+
+    hr {
+        color: #eee;
+    }
+</style>
+<div class="padding" title="公告">
+    <form id="gztz_form">
+        <!-- S 基本信息 -->
+        <input type="hidden" name="kid"/>
+        <input name="tzbt" type="text" class="inputHide text-center" readonly/>
+        <div class="padding">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <input name="fbsj" class="inputHide inputGrey tah" type="text" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="inputGrey">发布人：</td>
+                    <td><input name="fbr" class="inputHide inputGrey" type="text" readonly/></td>
+                </tr>
+            </table>
+        </div>
+        <hr/>
+        <div class="padding"><textarea name="tznr" class="inputHide" readonly></textarea></div>
+        <div class="padding">公告附件<br/><span id="filename"></span></div>
+    </form>
+    <div class="center paddingButton">
+        <a id="closetz_read" class="easyui-linkbutton buttonBottom" iconCls="icon-cancel">关 闭</a>
+    </div>
+</div>

@@ -1,0 +1,833 @@
+<?php /*a:2:{s:69:"D:\wamp64\www\sjpt\application\index\view\index\BmapProject\Bgis.html";i:1571361752;s:58:"D:\wamp64\www\sjpt\application\index\view\public\head.html";i:1571361752;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="/static/index//css/public.css">
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 12px;
+            font-family: "微软雅黑";
+            background: #dbdbdb;
+        }
+
+        #l-map {
+            height: 100%;
+            width: 100%;
+        }
+
+        #l-left {
+            height: 100%;
+            position: absolute;
+            z-index: 100;
+        }
+
+        .nTab {
+            float: left;
+            width: 400px;
+            margin-bottom: 2px;
+            margin-top: 10px;
+        }
+
+        .nTab .TabTitle {
+            clear: both;
+            height: 26px;
+            overflow: hidden;
+        }
+
+        .nTab .TabTitle ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nTab .TabTitle li {
+            float: left;
+            width: 80px;
+            cursor: pointer;
+            padding: 6px 0 7px 10px;
+            list-style-type: none;
+        }
+
+        .nTab .TabTitle .active {
+            background: url('/static/index//img/tab_bg1.gif') left -25px no-repeat;
+            border: 1px #C7C7CD solid;
+        }
+
+        .nTab .TabTitle .normal {
+            background: url('/static/index//img/tab_bg1.gif');
+            border-top: 1px #C7C7CD solid;
+            border-bottom: 1px #C7C7CD solid;
+            border-right: 1px #c7c7cd solid;
+        }
+
+        .nTab .TabContent {
+            width: auto;
+            background: #fff;
+            margin: 0 auto;
+            border: 1px #C7C7CD solid;
+        }
+
+        .none {
+            display: none;
+        }
+
+        .inputUnd {
+            width: 150px;
+            height: 20px;
+            text-align: center;
+            animation: bg 2s infinite ease-in-out;
+            -moz-animation: bg 2s infinite ease-in-out;
+            -webkit-animation: bg 2s infinite ease-in-out;
+        }
+
+        @keyframes bg {
+            0% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+            25% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            50% {
+                background: rgba(234, 0, 0, 0.1);
+            }
+            75% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            100% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+        }
+
+        @-moz-keyframes bg {
+            0% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+            25% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            50% {
+                background: rgba(234, 0, 0, 0.1);
+            }
+            75% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            100% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+        }
+
+        @-webkit-keyframes bg {
+            0% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+            25% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            50% {
+                background: rgba(234, 0, 0, 0.1);
+            }
+            75% {
+                background: rgba(234, 0, 0, 0.5);
+            }
+            100% {
+                background: rgba(234, 0, 0, 0.18);
+            }
+        }
+
+        .dxtitle {
+            background: #DFFFDF;
+            padding: 5px 0 5px 10px !important;
+        }
+
+        #myTab0_Content2 {
+            height: 163px !important;
+            text-align: center;
+            overflow: auto
+        }
+
+        /* -- 左侧显示菜单 -- */
+        .show, .hide {
+            height: 100%;
+            background: #fff;
+        }
+
+        .hide {
+            width: 5px;
+            /*display: none;*/
+        }
+
+        .show {
+            width: 260px;
+        }
+
+        /* -- 点击收放的按钮样式 -- */
+        .toggle {
+            width: 10px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 260px;
+            /*margin-top: -40px;*/
+            background: #fff;
+            border-radius: 0 6px 6px 0;
+            line-height: 40px;
+            color: #cdcdcd;
+            cursor: pointer;
+        }
+
+        .toggle div {
+            position: absolute;
+            left: -6px;
+        }
+
+        /* -- 表格样式 -- */
+        .tableList {
+            width: 100%;
+            border-top: 2px solid #eee;
+            border-bottom: 2px solid #eee;
+            font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", 微软雅黑, "Segoe UI", Tahoma, 宋体b8b体, SimSun, sans-serif;
+            text-rendering: optimizeLegibility;
+            color: #292929;
+        }
+
+        .tableList, .tableList td {
+            border-top: 1px solid #eee;
+            border-collapse: collapse;
+        }
+
+        .tableList td {
+            padding: 15px 0;
+        }
+
+        .tableList tr:hover {
+            background: #f5f5f5;
+        }
+
+        .tableRight {
+            text-align: right;
+        }
+
+        .width20 {
+            width: 20px;
+        }
+
+        .width55 {
+            width: 55px;
+        }
+
+        /* -- 灰色字体 -- */
+        .Gray {
+            color: #c6c6c6;
+        }
+
+        /* -- 顶部间距站位 -- */
+        .fill {
+            width: 100%;
+            height: 5px;
+        }
+
+        /* -- 数量统计样式 -- */
+        .seek {
+            padding-left: 10px;
+        }
+
+        .seek span {
+            color: #f00;
+            font-weight: bolder;
+        }
+
+        /* -- 标题 -- */
+        .mapData {
+            width: 97%;
+            height: 40px;
+            font-size: 14px;
+            font-weight: bolder;
+            padding-left: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        .mapData img {
+            margin-top: 8px;
+            width: 14px;
+        }
+
+        .mapData span {
+            position: relative;
+            top: -4px;
+            padding-left: 5px;
+        }
+
+        .BMap_cpyCtrl {
+            display: none;
+        }
+    </style>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script type="text/javascript" src="/static/index//js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/static/index//js/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/index//js/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="/static/index//js/easyui/themes/icon.css"/>
+<script type="text/javascript" src="/static/index//js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="/static/index//js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="/static/index//js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/index//js/jquery/jquery.easyui.validatebox.js"></script>
+<script type="text/javascript" src="/static/index//js/jquery/jquery.json.min.js"></script>
+<script type="text/javascript" src="/static/index//js/jquery/jquery.serializejson.js"></script>
+
+<!--下面的JS是公用JS，调用数据在HTML5里批量赋值-->
+<script type="text/javascript" src="/static/index//js/easyui/public.js"></script>
+<script type="text/javascript" src="/static/index//js/common/gpy.js"></script>
+<link rel="stylesheet" href="/static/index//css/public.css">
+
+<script>
+    var ThinkPHP = {
+        'MODULE': '/index',
+//        'PUBLIC':'__CONTROLLER__',
+        'ORGNAME': '<?php echo htmlentities(app('session')->get('user.orgname')); ?>',//当前使用者类型，审计局，建设单位，市领导，审批单位
+        'SESSION': '<?php echo htmlentities(app('session')->get('user.fullname')); ?>',//当前使用者的中文姓名
+        'DEPART': '<?php echo htmlentities(app('session')->get('user.depart')); ?>', //当前使用者部门
+        'USERID': '<?php echo htmlentities(app('session')->get('user.id')); ?>',
+        'POSITION': '<?php echo htmlentities(app('session')->get('user.position')); ?>', //当前使用者职务
+        'UPLOADS': '/static/uploads/',
+        'DFPDF': '/static/pdf/',
+        'IMG': '/static/index//img/',
+        'USER': '<?php echo htmlentities(app('session')->get('user.user')); ?>',
+        'UID': '<?php echo htmlentities(app('session')->get('user.uid')); ?>'
+    };
+
+</script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=qDskFtStbcAn3rmMA8lAaEqvy4EbpnGC"></script>
+    <script type="text/javascript" src="/static/index//js/bgmap/MarkerCluster.js"></script>
+    <script type="text/javascript" src="/static/index//js/bgmap/textIconOverlay.js"></script>
+    <script type="text/javascript" src="/static/index//js/common/addTabs.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+    <title>审计监督平台GIS地图展示</title>
+</head>
+<body>
+<div id="l-left">
+
+</div>
+<div id="l-map">
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+//        开启百度地图
+        map_init();
+//        获取地图左侧抽屉，数据。
+        $.post(ThinkPHP['MODULE'] + '/index/getleftgis', function (respon) {
+            xmxxleft = JSON.parse(respon);
+            var html = [];
+            html.push('<div class="show">');
+            var zjcount = 0;
+            html.push('<div class="fill"></div>');
+            html.push('<div class="mapData"><img src="/static/index//img/icon/Map1.png"><span>地图综合信息</span></div>');
+            html.push('<table class="tableList">');
+            for (var i = 0; i < xmxxleft.length; i++) {
+                if (xmxxleft[i].count == "") {
+                    xmxxleft[i].count = 0
+                }
+                zjcount = zjcount + parseInt(xmxxleft[i].count);
+                var strname = xmxxleft[i].pro_name;
+                if (xmxxleft[i].pro_name.length > 13) {
+                    strname = strname.substring(0, 13) + "..."
+                } else {
+                    strname = strname
+                }
+                html.push('<tr><td class="tableRight">' + strname + '</td><td class="Gray bolder width20 center">|</td><td class="width55 ">' + xmxxleft[i].count + '个工程</td></tr>');
+            }
+            html.push('');
+            html.push('</table>');
+            html.push('<p class="seek">为您找到 <span>' + xmxxleft.length + '</span> 个项目，共 <span>' + zjcount + '</span> 个单项工程</p>');
+            html.push('<div id="left" class="toggle"><div>《</div></div>');
+            html.push('</div>');
+            html.push('<div class="hide">');
+            html.push('<div id="right" class="toggle">》</div>');
+            html.push('</div>');
+            $("#l-left").html(html.join(""));
+
+            /* -- 左侧滑动事件 -- */
+            $('#left').click(function () {
+                $('.show').animate({width: 'toggle'}, 300);
+                $('.hide').toggle();
+                $('.toggle').animate({left: '-=258px'}, 300);
+            });
+            $('#right').click(function () {
+                $('.show').animate({width: 'toggle'}, 300);
+                $('.hide').toggle();
+                $('.toggle').animate({left: '260px'}, 300);
+            });
+            var divHeight = $(".show").height();//div的宽度
+            if (divHeight < 600) {
+                $(".show").hide();
+                $('.toggle').css('left', '5px');
+            } else {
+                $(".hide").hide();
+                $('.toggle').css('left', '260px');
+            }
+        });
+    });
+    function nTabs(thisObj, Num) {
+        if (thisObj.className == "active")return;
+        var tabObj = thisObj.parentNode.id;
+        var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+        for (i = 0; i < tabList.length; i++) {
+            if (i == Num) {
+                thisObj.className = "active";
+                document.getElementById(tabObj + "_Content" + i).style.display = "block";
+            } else {
+                tabList[i].className = "normal";
+                document.getElementById(tabObj + "_Content" + i).style.display = "none";
+            }
+        }
+    }
+    var cssdxC = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssdx1 = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#0080FF',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssdx2 = {
+        width: "180px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#01B468',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#FF2D2D',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC1 = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: '#0072E3',
+        border: '1px solid "#0066CC"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssC2 = {
+        width: "300px",
+        fontSize: "14px",
+        color: '#fff',
+        background: 'red',
+        border: '1px solid "#ff8355"',
+        borderRadius: "5px",
+        textAlign: "center",
+        height: "26px",
+        lineHeight: "26px",
+        fontWeight: "微软雅黑"
+    };
+
+    var cssjh = {
+        url: '/static/index//img/icon/red.png',
+        size: new BMap.Size(70, 70),
+        backgroundColor: '#E64B4E',
+        background: 'no-repeat'
+    };
+
+    //地图初始化载入数据
+    function map_init() {
+        var map = new BMap.Map("l-map");
+        map.centerAndZoom(new BMap.Point(113.614069, 37.870043), 13);
+        map.enableScrollWheelZoom(true);
+        map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        map.setCurrentCity("阳泉城区");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩
+
+        //项目坐标点抛洒。需要重写前台。
+        var label = new Array();
+        $.post(ThinkPHP['MODULE'] + '/index/getgisdata', {type: "xmzhxx"}, function (respon) {
+            xmzhxxArr = JSON.parse(respon);
+
+            for (var i = 0; i < xmzhxxArr.length; i++) {
+                var p0 = xmzhxxArr[i].jwd.split(",")[0];
+                var p1 = xmzhxxArr[i].jwd.split(",")[1];
+                var maker = addMarker(new window.BMap.Point(p0, p1), i);
+                addInfoWindow(maker, xmzhxxArr[i]);
+            }
+        });
+
+        //单项工程坐标点抛洒
+        var dxlabel = new Array();
+//		$.post(ThinkPHP['MODULE']+'/index/get_dx_map',{type:"dx"}, function (respon) {
+        $.post(ThinkPHP['MODULE'] + '/index/getdxgcmap', {type: "dx"}, function (respon) {
+            dxArr = JSON.parse(respon);
+
+            var myIcon = new BMap.Icon("/static/index//img/icon/dx.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25)
+                    });
+            var markers = new Array();
+            for (var i = 0; i < dxArr.length; i++) {
+                var p0 = dxArr[i].longitude.split(",")[0];
+                var p1 = dxArr[i].longitude.split(",")[1];
+                var point = new BMap.Point(p0, p1);
+                var marker = new BMap.Marker(point, {icon: myIcon});
+                markers.push(marker);
+                var maker = adddxMarker(marker, i);
+                adddxInfoWindow(marker, dxArr[i]);
+            }
+            ;
+
+            //添加聚合效果。
+            var markerClusterer = new BMapLib.MarkerClusterer(map,
+                    {
+                        markers: markers,
+                        girdSize: 100,
+                        styles: [{
+                            url: '/static/index//img/icon/blue.png',
+                            size: new BMap.Size(70, 70),
+                            backgroundColor: '#E64B4E',
+                            background: 'no-repeat'
+                        }]
+                    });
+
+        });
+
+        //项目坐标覆盖物，蓝色覆盖
+        $.post(ThinkPHP['MODULE'] + '/index/get_xmzb_map', {type: "dx"}, function (respon) {
+            arr = JSON.parse(respon);
+
+            var mapv = {},
+                    dest = [];
+            for (var i = 0; i < arr.length; i++) {
+                var ai = arr[i];
+                //console.log(ai)
+                if (!mapv[ai.kid]) {
+
+                    dest.push({
+                        kid: ai.kid,
+                        pro_category: ai.pro_category,
+                        pro_category1: ai.pro_category1,
+                        data: [ai]
+                    });
+                    mapv[ai.kid] = ai;
+
+                } else {
+
+                    for (var j = 0; j < dest.length; j++) {
+                        var dj = dest[j];
+                        if (dj.kid == ai.kid) {
+                            dj.data.push(ai);
+                            break;
+                        }
+                    }
+                }
+            }
+            ;
+//			console.log(dest)
+            $.each(dest, function (i, v) { //循环过滤的KID
+                var jzwArray = [];
+
+                for (var j = 0; j < v.data.length; j++) {
+                    var p0 = v.data[j].jwd.split(",")[0];
+                    var p1 = v.data[j].jwd.split(",")[1];
+                    jzwArray[j] = new BMap.Point(p0, p1);
+                }
+
+                if (v.pro_category == "铁路工程" || v.pro_category == "公路工程" || (v.pro_category == "市政公用工程") && v.pro_category1 == "城市道路") {
+                    var jzwArray = new BMap.Polyline(jzwArray, {
+                        strokeColor: "red",
+                        strokeWeight: 4,
+                        strokeOpacity: 0.5,
+                        fillColor: "#FFB5B5"
+                    })
+                    map.addOverlay(jzwArray);
+                } else {
+                    var jzw = new BMap.Polygon(jzwArray, {
+                        strokeWeight: 1,
+                        strokeColor: "#0072E3",
+                        strokeOpacity: 0.5,
+                        fillColor: "#ECF5FF",
+                        strokeStyle: "dashed"
+                    })
+                    map.addOverlay(jzw);
+                }
+
+            });
+        });
+
+        // 添加标注
+        function addMarker(point, index) {
+            var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25),
+                        imageOffset: new BMap.Size(0, 0 - index * 25)
+                    });
+            var marker = new BMap.Marker(point, {icon: myIcon});
+            map.addOverlay(marker);
+            label[index] = new window.BMap.Label(xmzhxxArr[index].pro_name, {offset: new window.BMap.Size(10, -30)});
+            marker.setLabel(label[index]);
+            label[index].setStyle(cssC);
+            //添加鼠标移动事件
+            marker.addEventListener("mouseover",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            label[k].setStyle(cssC1);
+                        }
+                    })(index)
+            );
+            //添加鼠标离开事件
+            marker.addEventListener("mouseout",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            label[k].setStyle(cssC2);
+                        }
+                    })(index)
+            );
+            return marker;
+        }
+
+        function adddxMarker(point, index) {
+            var myIcon = new BMap.Icon("/static/index//img/icon/dx.png",
+                    new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25)
+                    });
+            //var marker = new BMap.Marker(point, { icon: myIcon });
+            //map.addOverlay(marker);
+
+            dxlabel[index] = new window.BMap.Label(dxArr[index].sn, {offset: new window.BMap.Size(10, -30)});
+            point.setLabel(dxlabel[index]);
+            dxlabel[index].setStyle(cssdxC);
+
+
+            //添加鼠标移动事件
+            point.addEventListener("mouseover",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            dxlabel[k].setStyle(cssdx1);
+                        }
+                    })(index)
+            );
+            //添加鼠标离开事件
+            point.addEventListener("mouseout",
+                    (function (k) {
+                        // js 闭包
+                        return function () {
+                            dxlabel[k].setStyle(cssdx2);
+                        }
+                    })(index)
+            );
+
+            return point;
+        }
+    }
+
+
+    // 添加信息窗口
+    function addInfoWindow(marker, poi) {
+
+        var tab_data = [poi.pro_name, ThinkPHP['MODULE'] + '/underway/show_gzjdread?kid=' + poi.kid];
+        var html = [];
+        html.push('<div class="nTab">');
+        html.push('<div class="TabTitle">');
+        html.push('<ul id="myTab0">');
+        html.push('<li class="active" onmouseover="nTabs(this,0);">项目基本信息</li>');
+        html.push('<li class="normal" onmouseover="nTabs(this,1);">项目综合信息</li>');
+        html.push('<li class="normal" onmouseover="nTabs(this,2);">项目审计文书</li>');
+        html.push('</ul></div>');
+        html.push('<div class="TabContent">');
+        html.push('<div id="myTab0_Content0">');
+        html.push('<table class="table"><tbody>');
+        html.push('<tr>');
+        html.push('<td class="bolder right width80">项目名称：</td>');
+        if (poi.from) {
+            html.push('<td class="borderLeft">' + poi.pro_name + ' </td>');
+        } else {
+            html.push('<td class="borderLeft"><a  href="#" onclick="addparent(\'' + tab_data + '\')" >' + poi.pro_name + '</a> </td>');
+        }
+//		html.push('<td class="borderLeft"><a  href="#" onclick="addparent(\''+tab_data+'\')" >' + poi.pro_name + '</a> </td>');
+//		html.push('<td class="borderLeft">' + poi.pro_name + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">项目编号：</td>');
+        html.push('<td class="borderLeft">' + poi.aduit_num + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">建设单位：</td>');
+        html.push('<td class="borderLeft">' + poi.dw_name + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">项目性质：</td>');
+        html.push('<td class="borderLeft">' + poi.pro_category + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">项目投资额：</td>');
+        html.push('<td class="borderLeft">' + poi.pro_cost + ' （万元）</td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">建设工期：</td>');
+        html.push('<td class="borderLeft">' + poi.pro_time + '（年） </td>');
+        html.push('</tr>');
+        html.push('</tbody></table>');
+        html.push('</div>');
+        html.push('<div id="myTab0_Content1" class="none">');
+        html.push('<table class="table"><tbody>');
+        html.push('<tr>');
+        html.push('<td class="bolder right width150">审批阶段进度：</td>');
+        html.push('<td class="borderLeft"><div class="inputUnd">' + poi.spjd + '</div></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">当前资金到位：</td>');
+        html.push('<td class="borderLeft">' + poi.zjdz + ' （元）</td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right">当前资金支付：</td>');
+        html.push('<td class="borderLeft">' + poi.zjzf + ' （元）</td>');
+        html.push('</tr>');
+
+        if (poi.ycsp.indexOf("http") < 0) {
+            html.push('<tr>');
+            html.push('<td class="bolder right">远程视频：</td>');
+            html.push('<td class="borderLeft ">该项目还没有安装远程视频</td>');
+            html.push('</tr>');
+        } else {
+            html.push('<tr>');
+            html.push('<td class="bolder right">远程视频：</td>');
+            html.push('<td class="borderLeft "><a target="_blank" href=' + poi.ycsp + '><img src="/static/index//img/sxt.png" width="60"></a></td>');
+            html.push('</tr>');
+        }
+        html.push('</tbody></table></div>');
+        html.push('<div id="myTab0_Content2" class="none">');
+        html.push('<table class="table"><tbody>');
+
+        if (poi.sjws.length == "") {
+
+            html.push('<td class="bolder right "></td>');
+            html.push('<td class="borderLeft"><font color="red">该项目还没有下达的审计正式文书</font></td>' + '<br>');
+            html.push('</tr>');
+        } else {
+            html.push('<tr>');
+            html.push('<td> 文书类型</td>');
+            html.push('<td> 发布时间</td>');
+            html.push('</tr>');
+
+            for (var s = 0; s < poi.sjws.length; s++) {
+
+                var ws = poi.sjws[s].split(",")[0];
+                var sj = poi.sjws[s].split(",")[1];
+
+
+                html.push('<tr>');
+                html.push('<td> ' + ws + '</td>');
+                html.push('<td> ' + sj + ' </td>');
+                html.push('</tr>');
+            }
+        }
+        html.push('</tbody></table>');
+        html.push('</div></div>');
+        var infoWindow = new BMap.InfoWindow(html.join(""), {title: "", width: 400, height: 220});
+
+        var openInfoWinFun = function () {
+            marker.openInfoWindow(infoWindow);
+        };
+        marker.addEventListener("click", openInfoWinFun);
+        return openInfoWinFun;
+    }
+
+    //	 添加信息窗口
+    function adddxInfoWindow(marker, poidx) {
+        //pop弹窗标题
+        //var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + poi.title + '</div>';
+        //pop弹窗信息
+        var html = [];
+        html.push('<table class="table paddingButton"><tbody>');
+        html.push('<tr>');
+        html.push('<td class="dxtitle bolder" colspan="2">单项工程综合信息</td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right width80">工程名称：</td>');
+        html.push('<td class="borderLeft">' + poidx.sn + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right width80">施工单位：</td>');
+        html.push('<td class="borderLeft">' + poidx.sgdw + ' </td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td class="bolder right width100">已完成工程款：</td>');
+        html.push('<td class="borderLeft">' + poidx.ljwc + ' （元）</td>');
+        html.push('</tr>');
+        html.push('</tbody></table>');
+        var infoWindow = new BMap.InfoWindow(html.join(""), {title: "", width: 450, height: 130});
+
+        var openInfoWinFun = function () {
+            marker.openInfoWindow(infoWindow);
+        };
+        marker.addEventListener("click", openInfoWinFun);
+        return openInfoWinFun;
+    }
+
+    /* -- 工作进度点击函数 -- */
+    function addparent(pro) {
+
+        var prodata = pro.split(',');
+        var title = prodata[0] + '工作进度';
+        var url = prodata[1];
+        var parent$ = self.parent.$;
+        if (parent$('#tabs').tabs('exists', title)) {
+            parent$('#tabs').tabs('select', title);
+        } else {
+
+            var content = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height: 99.7%;"></iframe>';
+            parent$('#tabs').tabs('add', {       //实现add方法
+                title: title,
+                content: content,
+                closable: true
+            });
+        }
+    }
+
+</script>
